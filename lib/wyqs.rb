@@ -1,6 +1,6 @@
 module Wyqs
   class << self
-    attr_accessor :appid, :app_secret, :endpoint
+    attr_accessor :appid, :app_secret, :site
 
     def configure
       yield self
