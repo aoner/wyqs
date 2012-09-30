@@ -7,8 +7,9 @@ module Wyqs
       true
     end
   end
-=begin
+
   autoload :Client, "taobao/client"
+=begin
   autoload :Model, "taobao/model"
   autoload :TaobaokeItem, "models/taobaoke_item"
   autoload :TaobaokeShop, "models/taobaoke_shop"
