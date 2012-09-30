@@ -2,8 +2,8 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'wyqs/version'
-require 'wyqs/version'
-require 'wyqs/version'
+require 'wyqs/Client'
+require 'wyqs/Session'
 
 Gem::Specification.new do |gem|
   gem.name          = "wyqs"
