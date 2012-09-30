@@ -14,7 +14,7 @@ module Wyqs
         :timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         :format => 'json',
         :app_key => @app_key,
-        :v => '2.0',
+        :vq => '1.0',
         :method => method,
         :sign_method => 'md5'
       }
