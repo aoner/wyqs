@@ -1,6 +1,6 @@
 module Wyqs
   class << self
-    attr_accessor :app_key, :app_secret, :endpoint
+    attr_accessor :appid, :app_secret, :endpoint
 
     def configure
       yield self
@@ -8,7 +8,7 @@ module Wyqs
     end
   end
 
-  autoload :Client, "taobao/client"
+  autoload :Client, "wyqs/client"
 =begin
   autoload :Model, "taobao/model"
   autoload :TaobaokeItem, "models/taobaoke_item"
