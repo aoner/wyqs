@@ -15,6 +15,6 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  s.add_dependency('json', '~>1.6')
+  gem.add_dependency('json', '~>1.6')
   gem.require_paths = ["lib"] 
 end
