@@ -11,7 +11,7 @@ module Wyqs
     
     def get_request_token(options = {})
       params = {
-        :timestamp => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+        :timestamp => Time.now.to_i.to_s,
         :format => 'json',
         :appid => @app_key,
         :authvers => '1.0',
