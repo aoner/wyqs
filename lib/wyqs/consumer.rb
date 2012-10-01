@@ -1,6 +1,6 @@
 require 'json'
 module Wyqs
-  class Client
+  class Consumner
     attr_reader :appid, :app_secret, :site
 
     def initialize(appid = Wyqs.appid, app_secret = Wyqs.app_secret, endpoint = Wyqs.site)
