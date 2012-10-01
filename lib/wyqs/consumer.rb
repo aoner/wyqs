@@ -6,7 +6,7 @@ module Wyqs
     def initialize(appid = Wyqs.appid, app_secret = Wyqs.app_secret, endpoint = Wyqs.site)
       @appid = appid
       @app_secret = app_secret
-      @endpoint = site
+      @site = site
     end
     
     def get_request_token(options = {})
