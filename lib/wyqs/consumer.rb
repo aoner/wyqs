@@ -1,12 +1,12 @@
 require 'json'
 module Wyqs
-  class Consumner
+  class Consumer
     attr_reader :appid, :app_secret, :site
 
     def initialize(appid = Wyqs.appid, app_secret = Wyqs.app_secret, endpoint = Wyqs.site)
       @appid = appid
       @app_secret = app_secret
-      @endpoint = URI.encode(site)
+      @endpoint = site
     end
     
     def get_request_token(options = {})
@@ -20,7 +20,7 @@ module Wyqs
       params.merge!(options)
       str = '#{appid}&#{authvers}&#{format}&#{signmethod}&#{timestamp}'
       params["sign"] = Digest::MD5.hexdigest(str).upcase!
-      res = Net::HTTP.post_form(URI.parse(@site), params)
+      res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
       if params[:format] == 'json'
         JSON.parse(res.body)
       else
