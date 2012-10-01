@@ -4,5 +4,5 @@ module Wyqs
     attr_accessor :appid, :app_secret, :site
   end
 
-  autoload :Consumer, "taobao/consumer"
+  autoload :Consumer, "wyqs/consumer"
 end
