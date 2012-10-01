@@ -3,7 +3,7 @@ module Wyqs
   class Consumer
     attr_reader :appid, :app_secret, :site
 
-    def initialize(appid = Wyqs.appid, app_secret = Wyqs.app_secret, endpoint = Wyqs.site)
+    def initialize(appid = Wyqs.appid, app_secret = Wyqs.app_secret, site = Wyqs.site)
       @appid = appid
       @app_secret = app_secret
       @site = site
