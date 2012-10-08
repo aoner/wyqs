@@ -18,7 +18,7 @@ module Wyqs
         :signmethod => 'md5'
       }
       params.merge!(options)
-      str = "#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
+      str = (params.sort.collect { |c| "#{c[0]}#{c[1]}" }).join("")#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
       puts str
       params["sign"] = Digest::MD5.hexdigest(str).upcase!
       res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
