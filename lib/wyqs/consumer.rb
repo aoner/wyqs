@@ -21,6 +21,7 @@ module Wyqs
       str = '#{appid}&#{authvers}&#{format}&#{signmethod}&#{timestamp}'
       params["sign"] = Digest::MD5.hexdigest(str).upcase!
       res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
+      puts params
       if params[:format] == 'json'
         JSON.parse(res.body)
       else
