@@ -13,7 +13,7 @@ module Wyqs
       params = {
         :timestamp => Time.now.to_i.to_s,
         :format => 'json',
-        :appid => @app_key,
+        :appid => @appid,
         :authvers => '1.0',
         :signmethod => 'md5'
       }
