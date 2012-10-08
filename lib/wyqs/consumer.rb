@@ -20,7 +20,7 @@ module Wyqs
       params.merge!(options)
       str = Digest::MD5.hexdigest((params.sort.collect { |c| "#{c[1]}" }).join("&"))#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
       puts str
-      params["sign"] = URI.encode(Base64.encode64(str+"&test123456"))
+      params["sign"] = URI.encode(Base64.encode64([app_secret,str].join("&")))
       res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
       puts params
       if params[:format] == 'json'
