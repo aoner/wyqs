@@ -18,9 +18,9 @@ module Wyqs
         :signmethod => 'md5'
       }
       params.merge!(options)
-      str = (params.sort.collect { |c| "#{c[1]}" }).join("&")#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
+      str = Digest::MD5.hexdigest((params.sort.collect { |c| "#{c[1]}" }).join("&"))#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
       puts str
-      params["sign"] = Base64.encode64(Digest::MD5.hexdigest(str).upcase!)
+      params["sign"] = URI.encode(Base64.encode64(str+"&test123456"))
       res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
       puts params
       if params[:format] == 'json'
