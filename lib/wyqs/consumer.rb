@@ -19,6 +19,7 @@ module Wyqs
       }
       params.merge!(options)
       str = '#{appid}&#{authvers}&#{format}&#{signmethod}&#{timestamp}'
+      puts str
       params["sign"] = Digest::MD5.hexdigest(str).upcase!
       res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
       puts params
