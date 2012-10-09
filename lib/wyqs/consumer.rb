@@ -25,7 +25,7 @@ module Wyqs
       sign = [app_secret,str,""].join("&")
       puts sign
       params["sign"] = URI.encode(Base64.encode64(sign))
-      res = Net::HTTP.post_form(URI(@site)), params)
+      res = Net::HTTP.post_form(URI(@site), params)
       puts params
       if params[:format] == 'json'
         JSON.parse(res.body)
