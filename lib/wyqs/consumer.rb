@@ -20,12 +20,12 @@ module Wyqs
       params.merge!(options)
       str = (params.sort.collect { |c| "#{c[1]}" }).join("&")
       puts str
-      str = Digest::MD5.hexdigest(str)#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
+      str = Digest::MD5.hexdigest(str).downcase#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
       puts str
-      sign = [app_secret,str].join("&")
+      sign = [app_secret,str,""].join("&")
       puts sign
       params["sign"] = URI.encode(Base64.encode64(sign))
-      res = Net::HTTP.post_form(URI.parse(URI.encode(@site)), params)
+      res = Net::HTTP.post_form(URI(@site)), params)
       puts params
       if params[:format] == 'json'
         JSON.parse(res.body)
