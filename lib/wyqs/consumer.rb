@@ -19,7 +19,7 @@ module Wyqs
       }
       params.merge!(options)
       str = [params[:appid],params[:authvers],params[:format],params[:signmethod],params[:timestamp]].join("&")
-      params["sign"] = encrypt(str,appsecret,tokensecret)
+      params["sign"] = encrypt(str,appsecret,requesttoken)
       res = Net::HTTP.post_form(URI(params[:site]), params)
       #if params[:format] == 'json'
       req = JSON.parse(res.body)
@@ -32,11 +32,11 @@ module Wyqs
         :appid => @appid,
         :authvers => '1.0',
         :signmethod => 'md5',
-        :tokensecret => @requesttoken,
+        :requesttoken => @requesttoken,
         :site => 'http://routeapitest.5173.com:14167/access.do?'
       }
-      accessstr = [param[:appid],param[:authvers],param[:format],param[:tokensecret],param[:signmethod],param[:timestamp]].join("&")
-      param["sign"] = encrypt(accessstr,appsecret,@tokensecret)
+      accessstr = [param[:appid],param[:authvers],param[:format],param[:requesttoken],param[:signmethod],param[:timestamp]].join("&")
+      param["sign"] = encrypt(accessstr,appsecret,@requestsecret)
       ress = Net::HTTP.post_form(URI(param[:site]), param)
       JSON.parse(ress.body)
       #else
