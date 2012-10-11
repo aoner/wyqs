@@ -4,5 +4,5 @@ module Wyqs
     attr_accessor :appid, :app_secret, :site
   end
 
-  autoload :Consumer, "wyqs/consumer"
+  autoload :Token, "wyqs/token"
 end
