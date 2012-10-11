@@ -22,7 +22,7 @@ module Wyqs
       params["sign"] = encrypt(str,appsecret,tokensecret)
       res = Net::HTTP.post_form(URI(params[:site]), params)
       #if params[:format] == 'json'
-      @tokensecret = JSON.parse(res.body)["BizResult"]["RequestToken"]
+      @tokensecret = JSON.parse(res.body)["BizResult"]["RequestSecret"]
       
       param = {
         :timestamp => Time.now.to_i.to_s,
