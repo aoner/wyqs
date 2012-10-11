@@ -1,7 +1,7 @@
 require 'json'
 module Wyqs
   class Consumer
-    attr_reader :appid, :appsecret, :tokensecret, :accesstoken
+    attr_reader :appid, :appsecret, :requestsecret, :requesttoken
 
     def initialize(appid = Wyqs.appid, appsecret = Wyqs.appsecret)
       @appid = appid
@@ -22,7 +22,9 @@ module Wyqs
       params["sign"] = encrypt(str,appsecret,tokensecret)
       res = Net::HTTP.post_form(URI(params[:site]), params)
       #if params[:format] == 'json'
-      @tokensecret = JSON.parse(res.body)["BizResult"]["RequestSecret"]
+      req = JSON.parse(res.body)
+      @requestsecret = req["BizResult"]["RequestSecret"]
+      @requesttoken = req["BizResult"]["RequestToken"]
       
       param = {
         :timestamp => Time.now.to_i.to_s,
@@ -30,7 +32,7 @@ module Wyqs
         :appid => @appid,
         :authvers => '1.0',
         :signmethod => 'md5',
-        :tokensecret => @tokensecret,
+        :tokensecret => @requesttoken,
         :site => 'http://routeapitest.5173.com:14167/access.do?'
       }
       accessstr = [param[:appid],param[:authvers],param[:format],param[:tokensecret],param[:signmethod],param[:timestamp]].join("&")
