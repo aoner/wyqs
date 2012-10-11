@@ -9,13 +9,5 @@ module Wyqs
       accesstoken = a["BizResult"]["AccessToken"]
       accesssecret = a["BizResult"]["AccessSecret"]
     end
-
-    def invoke(method, options = {})
-      Client.new(method, options).invoke
-    end
-
-    class InvalidSignature < Exception
-
-    end
   end
-ends
+end
