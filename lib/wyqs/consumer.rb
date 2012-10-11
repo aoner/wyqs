@@ -1,6 +1,6 @@
 module Wyqs
   class Consumer
-    attr_accessor :accesstoken, :accesssecret
+    attr_accessor :appid, :appsecret, :accesstoken, :accesssecret
 
     def initialize(appid = Wyqs.appid, appsecret = Wyqs.appsecret)
       @appid = appid
