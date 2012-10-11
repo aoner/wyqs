@@ -6,7 +6,6 @@ module Wyqs
     def initialize(appid = Wyqs.appid, appsecret = Wyqs.appsecret)
       @appid = appid
       @appsecret = appsecret
-      @tokensecret = ''
     end
     
     def get_request_token(options = {})
@@ -32,7 +31,10 @@ module Wyqs
     
     private
     def encrypt(signatureBase, appsecret, tokensecret)
-      URI.encode(Base64.encode64s([appsecret,Digest::MD5.hexdigest(signatureBase).downcase,tokensecret].join("&")))
+      basestr = Digest::MD5.hexdigest(signatureBase).downcase
+      puts basestr
+      puts [appsecret,basestr,tokensecret].join("&")
+      URI.encode(Base64.encode64s([appsecret,basestr,tokensecret].join("&")))
     end
   end
 end
