@@ -19,7 +19,7 @@ module Wyqs
         :stie => 'http://routeapitest.5173.com:14167/request.do'
       }
       params.merge!(options)
-      str = params.collect { |c| "#{c[1]}" }).join("&")
+      str = (params.collect { |c| "#{c[1]}" }).join("&")
       params["sign"] = encrypt(str,appsecret,tokensecret)
       res = Net::HTTP.post_form(URI(params[:site]), params)
       if params[:format] == 'json'
