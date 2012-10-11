@@ -33,11 +33,10 @@ module Wyqs
         :tokensecret => @tokensecret,
         :site => 'http://routeapitest.5173.com:14167/access.do?'
       }
-      accessstr = [param[:appid],param[:authvers],param[:format],,param[:tokensecret],param[:signmethod],param[:timestamp]].join("&")
+      accessstr = [param[:appid],param[:authvers],param[:format],param[:tokensecret],param[:signmethod],param[:timestamp]].join("&")
       param["sign"] = encrypt(accessstr,appsecret,@tokensecret)
-      res = Net::HTTP.post_form(URI(param[:site]), param)
-      #@accesstoken = 
-      JSON.parse(res.body)
+      ress = Net::HTTP.post_form(URI(param[:site]), param)
+      JSON.parse(ress.body)
       #else
       #  res.body
       #end
