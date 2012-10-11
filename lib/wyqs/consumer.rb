@@ -1,8 +1,8 @@
 require 'json'
 module Wyqs
   class Consumer
-    attr_reader :appid, :app_secret,:params
-    attr_reader :accesstoken,:requesttoken,
+    attr_reader :appid, :app_secret, :params
+    attr_reader :accesstoken,:requesttoken
 
     def initialize(appid = Wyqs.appid, app_secret = Wyqs.app_secret)
       @appid = appid
