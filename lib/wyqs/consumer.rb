@@ -2,7 +2,8 @@ require 'json'
 module Wyqs
   class Consumer
     attr_reader :appid, :app_secret, :site
-    params = {
+    attr_writer :options
+    @params = {
         :timestamp => Time.now.to_i.to_s,
         :format => 'json',
         :appid => @appid,
@@ -17,7 +18,7 @@ module Wyqs
     end
     
     def get_request_token(options = {})
-      @options = params.merge!(options)
+      @options = @params.merge!(options)
       #str = (params.sort.collect { |c| "#{c[1]}" }).join("&")
       #puts str
       str = Digest::MD5.hexdigest((@options.sort.collect { |c| "#{c[1]}" }).join("&")).downcase#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
