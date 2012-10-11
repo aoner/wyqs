@@ -18,17 +18,17 @@ module Wyqs
     end
     
     def get_request_token(options = {})
-      @options = params.merge!(options)
+      params.merge!(options)
       #str = (params.sort.collect { |c| "#{c[1]}" }).join("&")
-      puts @options
-      str = Digest::MD5.hexdigest((@options.sort.collect { |c| "#{c[1]}" }).join("&")).downcase#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
+      puts params
+      str = Digest::MD5.hexdigest((params.sort.collect { |c| "#{c[1]}" }).join("&")).downcase#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
       #puts str
       #sign = [app_secret,str,""].join("&")
       #puts sign
-      @options["sign"] = URI.encode(Base64.encode64s([app_secret,str,""].join("&")))
-      res = Net::HTTP.post_form(URI(@site), @options)
+      params["sign"] = URI.encode(Base64.encode64s([app_secret,str,""].join("&")))
+      res = Net::HTTP.post_form(URI(@site), params)
       #puts params
-      if @options[:format] == 'json'
+      if params[:format] == 'json'
         JSON.parse(res.body)
       else
         res.body
