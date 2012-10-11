@@ -19,7 +19,7 @@ module Wyqs
         accesstoken = @accesstoken
         token = ""
         returnurl = 'http://thirdpart.com/welcome.aspx'
-        parainfo = {"IsDisplayHeadRear"=true,"IsSupportPasspod"=>true,"CallbackUrl"=>'http://5433.com'}
+        parainfo = {"IsDisplayHeadRear"=>true,"IsSupportPasspod"=>true,"CallbackUrl"=>'http://5433.com'}
         vers = '1.0'
         clientip = '127.0.0.1'
         fields = ''
