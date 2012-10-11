@@ -20,7 +20,7 @@ module Wyqs
     def get_request_token(options = {})
       @options = @@params.merge!(options)
       #str = (params.sort.collect { |c| "#{c[1]}" }).join("&")
-      #puts str
+      puts @options
       str = Digest::MD5.hexdigest((@options.sort.collect { |c| "#{c[1]}" }).join("&")).downcase#"#{params[:appid]}&#{params[:authvers]}&#{params[:format]}&#{params[:signmethod]}&#{params[:timestamp]}"
       #puts str
       #sign = [app_secret,str,""].join("&")
