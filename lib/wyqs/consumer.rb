@@ -25,8 +25,7 @@ module Wyqs
         :clientip => '127.0.0.1',
         :fields => '',
         :method => 'kubao.trade.BasicType.get',
-        :uri => 'GET:#{requesturi}',
-        :requesturi = 'http://routeapitest.5173.com:14167/rest.do?'
+        :uri => 'GET:#{requesturi}'
         }
 
         baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],params[:uri],params[:vers]].join("&")
