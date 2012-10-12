@@ -11,7 +11,7 @@ module Wyqs
     end
     
     def list
-        parsms = {
+        params = {
         :appid => @appid,
         :authvers => '1.0',
         :format => 'json',
