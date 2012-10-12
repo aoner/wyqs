@@ -12,24 +12,22 @@ module Wyqs
     
     def list
         params = {
+        :accesstoken => @accesstoken,
         :appid => @appid,
         :authvers => '1.0',
-        :format => 'json',
-        :signmethod => 'md5',
-        :timestamp => Time.now.to_i.to_s,
-        :accesstoken => @accesstoken,
-        :token => "",
-        :returnurl => 'http://thirdpart.com/welcome.aspx',
-        :parainfo => {"IsDisplayHeadRear"=>true,"IsSupportPasspod"=>true,"CallbackUrl"=>'http://5433.com'},
-        :vers => '1.0',
         :clientip => '127.0.0.1',
         :fields => '',
+        :format => 'json',
         :method => 'kubao.trade.BasicType.get',
-        :uri => 'GET:#{requesturi}'
+        :parainfo => {"IsDisplayHeadRear"=>true,"IsSupportPasspod"=>true,"CallbackUrl"=>'http://5433.com'},
+        :signmethod => 'md5',
+        :timestamp => Time.now.to_i.to_s,
+        :vers => '1.0',
+        :token => ""
         }
-
-        baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],params[:uri],params[:vers]].join("&")
-      sign = encrypt(baseSign,appsecret,accesssecret)
+        
+        baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],"GET:http://routeapitest.5173.com:14167/rest.do?",params[:vers]].join("&")
+      params[:sign] = encrypt(baseSign,appsecret,accesssecret)
       puts params
       ress = Net::HTTP.post_form(URI("http://routeapitest.5173.com:14167/rest.do?"), params)
       JSON.parse(ress.body)
