@@ -30,7 +30,7 @@ module Wyqs
 
         baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],params[:uri],params[:vers]].join("&")
       sign = encrypt(baseSign,appsecret,accesssecret)
-      puts address
+      puts params
       ress = Net::HTTP.post_form(URI("http://routeapitest.5173.com:14167/rest.do?"), params)
       JSON.parse(ress.body)
     end
