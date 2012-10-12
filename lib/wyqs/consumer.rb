@@ -11,27 +11,29 @@ module Wyqs
     end
     
     def list
-        appid = @appid
-        authvers = '1.0'
-        format = 'json'
-        signmethod = 'md5'
-        timestamp = Time.now.to_i.to_s
-        accesstoken = @accesstoken
-        token = ""
-        returnurl = 'http://thirdpart.com/welcome.aspx'
-        parainfo = {"IsDisplayHeadRear"=>true,"IsSupportPasspod"=>true,"CallbackUrl"=>'http://5433.com'}
-        vers = '1.0'
-        clientip = '127.0.0.1'
-        fields = ''
-        method = 'kubao.trade.BasicType.get'
-        uri = 'GET:#{requesturi}'
-        requesturi = 'http://5433.com' 
+        parsm = {
+        :appid => @appid,
+        :authvers => '1.0',
+        :format => 'json',
+        :signmethod => 'md5',
+        :timestamp => Time.now.to_i.to_s,
+        :accesstoken => @accesstoken,
+        :token => "",
+        :returnurl => 'http://thirdpart.com/welcome.aspx',
+        :parainfo => {"IsDisplayHeadRear"=>true,"IsSupportPasspod"=>true,"CallbackUrl"=>'http://5433.com'},
+        :vers => '1.0',
+        :clientip => '127.0.0.1',
+        :fields => '',
+        :method => 'kubao.trade.BasicType.get',
+        :uri => 'GET:#{requesturi}',
+        :requesturi = 'http://routeapitest.5173.com:14167/rest.do?'
+        }
 
-        baseSign =[accesstoken,appid,authvers,clientip,fields,format,method,parainfo,signmethod,timestamp,token,uri,vers].join("&")
+        baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],params[:uri],params[:vers]].join("&")
       sign = encrypt(baseSign,appsecret,accesssecret)
-      address = '#{requesturi}?#accesstoken=#{accesstoken}&appid=#{appid}&authvers=#{authvers}&clientip=#{clientip}&fields=#{fields}&format=#{format}&method=#{method}&parainfo=#{parainfo}&signmethod=#{signmethod}&timestamp=#{timestamp}&vers=#{vers]&token=#{token}&sign=#{sign}'
       puts address
-      redirect_to(address)
+      ress = Net::HTTP.post_form(URI("http://routeapitest.5173.com:14167/rest.do?"), param)
+      JSON.parse(ress.body)
     end
     
     private
