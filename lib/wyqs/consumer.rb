@@ -11,7 +11,7 @@ module Wyqs
     end
     
     def list
-        parsm = {
+        parsms = {
         :appid => @appid,
         :authvers => '1.0',
         :format => 'json',
@@ -31,7 +31,7 @@ module Wyqs
         baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],params[:uri],params[:vers]].join("&")
       sign = encrypt(baseSign,appsecret,accesssecret)
       puts address
-      ress = Net::HTTP.post_form(URI("http://routeapitest.5173.com:14167/rest.do?"), param)
+      ress = Net::HTTP.post_form(URI("http://routeapitest.5173.com:14167/rest.do?"), params)
       JSON.parse(ress.body)
     end
     
