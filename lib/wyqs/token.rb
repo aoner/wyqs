@@ -15,7 +15,7 @@ module Wyqs
         :appid => @appid,
         :authvers => '1.0',
         :signmethod => 'md5',
-        :site => 'http://routeapitest.5173.com:14167/request.do?'
+        :site => 'http://routeapitest.5173.com:14167/request.do'
       }
       params.merge!(options)
       str = [params[:appid],params[:authvers],params[:format],params[:signmethod],params[:timestamp]].join("&")
@@ -33,7 +33,7 @@ module Wyqs
         :authvers => '1.0',
         :signmethod => 'md5',
         :requesttoken => @requesttoken,
-        :site => 'http://routeapitest.5173.com:14167/access.do?'
+        :site => 'http://routeapitest.5173.com:14167/access.do'
       }
       accessstr = [param[:appid],param[:authvers],param[:format],param[:requesttoken],param[:signmethod],param[:timestamp]].join("&")
       param["sign"] = encrypt(accessstr,appsecret,@requestsecret)
@@ -47,8 +47,6 @@ module Wyqs
     private
     def encrypt(signatureBase, appsecret, tokensecret)
       basestr = Digest::MD5.hexdigest(signatureBase).downcase
-      puts basestr
-      puts [appsecret,basestr,tokensecret].join("&")
       URI.encode(Base64.encode64s([appsecret,basestr,tokensecret].join("&")))
     end
   end
