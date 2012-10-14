@@ -27,6 +27,7 @@ module Wyqs
         }
         
         baseSign =[@accesstoken,@appid,params[:authvers],params[:clientip],params[:fields],params[:format],params[:method],params[:parainfo],params[:signmethod],params[:timestamp],params[:token],"GET:http://routeapitest.5173.com:14167/rest.do",params[:vers]].join("&")
+        puts basesign
       params[:sign] = encrypt(baseSign,appsecret,accesssecret)
       puts params
       ress = Net::HTTP.post_form(URI("http://routeapitest.5173.com:14167/rest.do?"), params)
@@ -35,9 +36,7 @@ module Wyqs
     
     private
     def encrypt(signatureBase, appsecret, tokensecret)
-      puts signatureBase
       basestr = Digest::MD5.hexdigest(signatureBase).downcase
-      puts basestr
       puts [appsecret,basestr,tokensecret].join("&")
       URI.encode(Base64.encode64s([appsecret,basestr,tokensecret].join("&")))
     end
