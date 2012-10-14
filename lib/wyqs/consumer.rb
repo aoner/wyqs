@@ -19,7 +19,7 @@ module Wyqs
         :fields => '',
         :format => 'json',
         :method => 'kubao.passport.display',
-        :parainfo => {"IsDisplayHeadRear"=>true,"IsSupportPasspod"=>true,"CallbackUrl"=>"http://thirdpart.com/welcome.aspx"},
+        :parainfo => {"IsDisplayHeadRear":true,"IsSupportPasspod":true,"CallbackUrl":"http://thirdpart.com/welcome.aspx"},
         :signmethod => 'md5',
         :timestamp => Time.now.to_i.to_s,
         :vers => '1.0',
