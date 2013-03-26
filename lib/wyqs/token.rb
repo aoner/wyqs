@@ -47,7 +47,7 @@ module Wyqs
     private
     def encrypt(signatureBase, appsecret, tokensecret)
       basestr = Digest::MD5.hexdigest(signatureBase).downcase
-      URI.encode(Base64.encode64s([appsecret,basestr,tokensecret].join("&")))
+      URI.encode(Base64.encode64([appsecret,basestr,tokensecret].join("&")))
     end
   end
 end
